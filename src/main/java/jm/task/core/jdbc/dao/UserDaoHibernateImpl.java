@@ -55,25 +55,19 @@ public class UserDaoHibernateImpl implements UserDao {
     public void removeUserById(long id) {
         try (Session session = Util.getSessionFactory().openSession()) {
             session.beginTransaction();
-            User user = session.get(User.class, id);
-            session.delete(user);
+           // User user = session.get(User.class, id);
+            session.delete(session.get(User.class, id));
             session.getTransaction().commit();
         }
     }
 
     @Override
     public List<User> getAllUsers() {
-
-        try (Session session = Util.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            List<User> users = session.createQuery("from User").getResultList();
-            for (User user : users) {
-                System.out.println(user);
+        try (Session session = Util.getSessionFactory().openSession()){
+             {
+                 return session.createSQLQuery("select * from User ").addEntity(User.class).list();
             }
-            session.getTransaction().commit();
-            return users;
         }
-
     }
 
     @Override

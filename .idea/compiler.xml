@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TaskJDBC" />
         <module name="1.1.4" />
+        <module name="1.1.5" />
       </profile>
     </annotationProcessing>
   </component>
